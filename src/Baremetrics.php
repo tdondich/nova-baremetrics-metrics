@@ -27,8 +27,8 @@ class Baremetrics
     {
         $response = $this->client->get($this->metric, [
             'query' => [
-                'start_date' => now()->subMonths($months)->setTimezone('UTC')->format('Y-m-d'),
-                'end_date'   => now()->setTimezone('UTC')->format('Y-m-d'),
+                'start_date' => now()->subMonths($months)->setTimezone('PDT')->format('Y-m-d'),
+                'end_date'   => now()->setTimezone('PDT')->format('Y-m-d'),
             ],
         ])->getBody()->getContents();
         $entries = json_decode($response)->metrics;
