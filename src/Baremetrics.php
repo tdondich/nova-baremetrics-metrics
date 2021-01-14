@@ -45,6 +45,9 @@ class Baremetrics
 
             if ('money' == $this->type()) {
                 $value = $value / 100;
+            else if ('percentage' == $this->type()) {
+                
+            }
             } else {
                 $value = $value;
             }
@@ -83,6 +86,8 @@ class Baremetrics
             'reactivations'        => 'number',
             'refunds'              => 'money',
             'revenue_churn'        => 'money',
+            'active_trials'        => 'number',
+            'new_trials'           => 'number',
             'trial_conversion'     => 'number',
             'upgrades'             => 'number',
             'user_churn'           => 'money',
@@ -106,6 +111,7 @@ class Baremetrics
             'fees'                 => 'Fees',
             'ltv'                  => 'LTV',
             'mrr'                  => 'MRR',
+            'mrr_growth_rate'      => 'MRR Growth Rate',
             'net_revenue'          => 'Net Revenue',
             'new_customers'        => 'New Customers',
             'new_subscriptions'    => 'New Subscriptions',
