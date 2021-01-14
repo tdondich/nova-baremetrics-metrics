@@ -47,7 +47,6 @@ class Baremetrics
                 $value = $value / 100;
             } elseif('percent' == $this->type()) {
                $value = $value;   
-            }
             } else {
                 $value = $value;
             }
