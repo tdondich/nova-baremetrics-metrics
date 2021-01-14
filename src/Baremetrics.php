@@ -45,6 +45,9 @@ class Baremetrics
 
             if ('money' == $this->type()) {
                 $value = $value / 100;
+            } elseif('percent' == $this->type()) {
+               $value = $value;   
+            }
             } else {
                 $value = $value;
             }
@@ -56,6 +59,9 @@ class Baremetrics
         // Final formatting
         if ('money' == $this->type()) {
             $data['prefix'] = '$';
+        }
+        if ('percent' == $this->type()) {
+            $data['suffix'] = '%';
         }
 
         return $data;
@@ -85,9 +91,9 @@ class Baremetrics
             'revenue_churn'        => 'money',
             'active_trials'        => 'number',
             'new_trials'           => 'number',
-            'trial_conversion'     => 'number',
+            'trial_conversion'     => 'percent',
             'upgrades'             => 'number',
-            'user_churn'           => 'money',
+            'user_churn'           => 'percent',
         ];
 
         return $metricTypes[$this->metric];
