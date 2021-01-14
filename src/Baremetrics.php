@@ -117,6 +117,7 @@ class Baremetrics
             'refunds'              => 'Refunds',
             'revenue_churn'        => 'Revenue Churn',
             'trial_conversion'     => 'Trial Conversion',
+            'active_trials'        => 'Active Trials',
             'upgrades'             => 'Upgrades',
             'user_churn'           => 'User Churn',
         ];
