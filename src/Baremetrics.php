@@ -45,9 +45,6 @@ class Baremetrics
 
             if ('money' == $this->type()) {
                 $value = $value / 100;
-            else if ('percentage' == $this->type()) {
-                
-            }
             } else {
                 $value = $value;
             }
