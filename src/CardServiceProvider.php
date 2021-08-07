@@ -17,11 +17,6 @@ class CardServiceProvider extends ServiceProvider
         $this->app->booted(function () {
             $this->routes();
         });
-
-        Nova::serving(function (ServingNova $event) {
-            Nova::script('baremetrics-card', __DIR__.'/../dist/js/card.js');
-            Nova::style('baremetrics-card', __DIR__.'/../dist/css/card.css');
-        });
     }
 
     /**
