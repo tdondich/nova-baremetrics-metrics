@@ -27,8 +27,8 @@ class Baremetrics
     {
         $response = $this->client->get($this->metric, [
             'query' => [
-                'start_date' => Carbon::create()->subMonths($months)->setTimezone('PDT')->format('Y-m-d'),
-                'end_date'   => Carbon::create()->setTimezone('PDT')->format('Y-m-d'),
+                'start_date' => now()->subMonths($months)->setTimezone('PDT')->format('Y-m-d'),
+                'end_date'   => now()->setTimezone('PDT')->format('Y-m-d'),
             ],
         ])->getBody()->getContents();
         $entries = json_decode($response)->metrics;
@@ -45,6 +45,8 @@ class Baremetrics
 
             if ('money' == $this->type()) {
                 $value = $value / 100;
+            } elseif('percent' == $this->type()) {
+               $value = $value;   
             } else {
                 $value = $value;
             }
@@ -56,6 +58,9 @@ class Baremetrics
         // Final formatting
         if ('money' == $this->type()) {
             $data['prefix'] = '$';
+        }
+        if ('percent' == $this->type()) {
+            $data['suffix'] = '%';
         }
 
         return $data;
@@ -83,9 +88,11 @@ class Baremetrics
             'reactivations'        => 'number',
             'refunds'              => 'money',
             'revenue_churn'        => 'money',
-            'trial_conversion'     => 'number',
+            'active_trials'        => 'number',
+            'new_trials'           => 'number',
+            'trial_conversion'     => 'percent',
             'upgrades'             => 'number',
-            'user_churn'           => 'money',
+            'user_churn'           => 'percent',
         ];
 
         return $metricTypes[$this->metric];
@@ -106,6 +113,7 @@ class Baremetrics
             'fees'                 => 'Fees',
             'ltv'                  => 'LTV',
             'mrr'                  => 'MRR',
+            'mrr_growth_rate'      => 'MRR Growth Rate',
             'net_revenue'          => 'Net Revenue',
             'new_customers'        => 'New Customers',
             'new_subscriptions'    => 'New Subscriptions',
@@ -114,6 +122,8 @@ class Baremetrics
             'refunds'              => 'Refunds',
             'revenue_churn'        => 'Revenue Churn',
             'trial_conversion'     => 'Trial Conversion',
+            'active_trials'        => 'Active Trials',
+            'new_trials'           => 'New Trials',
             'upgrades'             => 'Upgrades',
             'user_churn'           => 'User Churn',
         ];
